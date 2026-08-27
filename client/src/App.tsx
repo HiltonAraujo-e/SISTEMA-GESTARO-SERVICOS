@@ -1,9 +1,8 @@
-// Quiet Luxury Ritual reminder: every route has a clear escape path and keeps the same restrained brand system.
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
-import ErrorBoundary from "./components/ErrorBoundary";
+
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { AppProvider } from "./contexts/AppContext";
 import Home from "./pages/Home";
@@ -11,7 +10,7 @@ import Book from "./pages/Book";
 import Login from "./pages/Login";
 import ClientDashboard from "./pages/ClientDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
-
+import ErrorBoundary from "./components/ErrorBoundary";
 function Router() {
   return <Switch>
     <Route path="/" component={Home} />
