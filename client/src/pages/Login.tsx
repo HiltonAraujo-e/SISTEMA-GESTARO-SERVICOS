@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, Link } from "wouter";
 import { Eye, EyeOff, Loader2, ArrowRight, Mail, Lock, Sparkles, ShieldCheck, ArrowUpRight, ArrowLeft } from "lucide-react";
 import { Arrow } from "@radix-ui/react-tooltip";
+import { BrandMark } from "@/components/Brand";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -43,7 +44,7 @@ export default function LoginPage() {
 
         <div className="relative z-10 flex items-center gap-3">
           <span className="w-11 h-11 rounded-full bg-white/10 backdrop-blur flex items-center justify-center">
-            <Sparkles size={18} className="text-blush" />
+            <BrandMark />
           </span>
           <div>
             <p className="text-ivory text-sm font-bold tracking-widest uppercase">Duds Beauty Spa</p>
@@ -97,17 +98,6 @@ export default function LoginPage() {
 
         <div className="w-full max-w-[420px] relative z-10">
           {/* Logo mobile */}
-          <div className="lg:hidden flex items-center gap-3 mb-6">
-            <span className="w-11 h-11 rounded-full bg-blush-soft flex items-center justify-center flex-none">
-              <Sparkles size={18} className="text-rosewood" />
-            </span>
-            <div>
-              <span className="block text-xs font-bold tracking-widest uppercase text-rosewood">
-                Duds Beauty Spa
-              </span>
-              <span className="block text-[10px] text-muted">Painel de gestão</span>
-            </div>
-          </div>
 
           <div className="bg-paper rounded-[28px] shadow-soft border border-line overflow-visible relative">
             {/* Faixa de assinatura — gradiente rosewood > blush, ícone flutuando na borda */}
@@ -124,8 +114,9 @@ export default function LoginPage() {
 
             {/* Avatar flutuando sobre a faixa */}
             <div className="absolute left-1/2 -translate-x-1/2 top-[6.5rem] w-16 h-16 rounded-full bg-paper shadow-soft flex items-center justify-center border-4 border-paper">
+
               <span className="w-full h-full rounded-full bg-ink flex items-center justify-center">
-                <Sparkles size={22} className="text-blush" />
+                <BrandMark />
               </span>
             </div>
 
