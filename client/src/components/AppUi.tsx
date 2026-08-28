@@ -1,4 +1,3 @@
-// Quiet Luxury Ritual reminder: status colors remain soft, legible, and meaning-first rather than decorative.
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Bell, CalendarDays, ChevronRight, CircleUserRound, LayoutDashboard, LogOut, Menu, Settings2, Sparkles, UsersRound, X } from "lucide-react";
