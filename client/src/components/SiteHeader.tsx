@@ -29,7 +29,7 @@ export default function SiteHeader() {
           {/* Logo */}
           <div className="flex items-center flex-none">
             <div className="flex items-center gap-1.5">
-              <div className="w-8 h-8 grid place-items-center overflow-hidden relative">
+              <div className="w-10 h-10 grid place-items-center overflow-hidden relative">
                 <BrandMark />
                 <span className="absolute inset-0 rounded-full border border-current opacity-10 pointer-events-none" />
               </div>
@@ -38,7 +38,7 @@ export default function SiteHeader() {
                   Duds
                 </strong>
                 <small className="text-[6px] font-bold uppercase tracking-[0.18em] text-[#847a75]">
-                  Beauty Studio
+                  Beauty Spa
                 </small>
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function SiteHeader() {
         onClick={() => setOpen(false)}
       />
 
-      {/* Menu mobile (overlay) */}
+      {/* ─── MENU MOBILE REFINADO ─── */}
       <div
         className={`fixed top-0 right-0 bottom-0 w-full max-w-[340px] bg-[#fffdfb] shadow-2xl z-50 overflow-y-auto transform transition-transform duration-300 ease-out ${open ? "translate-x-0" : "translate-x-full"
           }`}
@@ -126,7 +126,7 @@ export default function SiteHeader() {
         {/* Cabeçalho do menu com logo e botão X */}
         <div className="flex items-center justify-between px-6 pt-8 pb-4 border-b border-[#e7dfda]">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 grid place-items-center overflow-hidden relative">
+            <div className="w-10 h-10 grid place-items-center overflow-hidden relative">
               <BrandMark />
               <span className="absolute inset-0 rounded-full border border-current opacity-10 pointer-events-none" />
             </div>
@@ -135,7 +135,7 @@ export default function SiteHeader() {
                 Duds
               </strong>
               <small className="text-[5.5px] font-bold uppercase tracking-[0.18em] text-[#847a75]">
-                Beauty Studio
+                Beauty Spa
               </small>
             </div>
           </div>
@@ -148,40 +148,47 @@ export default function SiteHeader() {
           </button>
         </div>
 
-        {/* Links de navegação */}
-        <nav className="flex flex-col px-6 py-4 gap-1">
+        {/* Links de navegação — agora com mais requinte */}
+        <nav className="flex flex-col px-6 py-6 gap-0.5">
           {links.map(([label, href]) => (
             <a
               key={href}
               href={isHome ? href : `/${href}`}
               onClick={() => setOpen(false)}
-              className="text-xl font-serif font-medium py-3 border-b border-[#e7dfda] text-[#2d2524] hover:text-[#a96872] transition-colors"
+              className="group flex items-center justify-between py-4 border-b border-[#e7dfda]/60 text-xl font-serif font-medium text-[#2d2524] hover:text-[#a96872] transition-colors duration-200"
             >
               {label}
+              <ArrowUpRight size={16} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-[#a96872]" />
             </a>
           ))}
         </nav>
 
-        {/* Ações (Login + Agendar) */}
-        <div className="px-6 flex flex-col gap-2.5 mt-2">
+        {/* Separador elegante */}
+        <div className="mx-6 h-px bg-gradient-to-r from-transparent via-[#eac4cf] to-transparent" />
+
+        {/* Botões de acção — Login e Agendar */}
+        <div className="px-6 py-6 flex flex-col gap-3">
           <Link
             href="/login"
             onClick={() => setOpen(false)}
-            className="text-sm font-semibold text-[#847a75] hover:text-[#a96872] transition-colors text-center"
+            className="flex items-center justify-center w-full h-11 rounded-full border border-[#e7dfda] text-sm font-medium text-[#847a75] hover:border-[#a96872] hover:bg-[#fff0ee] hover:text-[#a96872] transition-all duration-200"
           >
             Login
           </Link>
           <Link
             href="/book"
             onClick={() => setOpen(false)}
-            className="inline-flex items-center justify-center gap-2 w-full min-h-[44px] px-4 rounded-full text-sm font-semibold bg-[#eac4cf] text-[#2d2524] shadow-[0_3px_12px_rgba(234,196,207,0.25)] hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(234,196,207,0.35)] transition-all duration-200"
+            className="flex items-center justify-center gap-2 w-full h-11 rounded-full text-sm font-semibold bg-[#eac4cf] text-[#2d2524] shadow-[0_3px_12px_rgba(234,196,207,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(234,196,207,0.4)] transition-all duration-200"
           >
-            Agendar <ArrowUpRight size={14} />
+            Agendar <ArrowUpRight size={16} />
           </Link>
         </div>
 
-        {/* Redes sociais */}
-        <div className="px-6 mt-6 pt-4 border-t border-[#e7dfda] flex gap-3">
+        {/* Separador suave */}
+        <div className="mx-6 h-px bg-gradient-to-r from-transparent via-[#e7dfda] to-transparent" />
+
+        {/* Redes sociais — agora com fundo suave e efeito elevado */}
+        <div className="px-6 py-6 flex justify-center gap-4">
           {socials.map(({ icon: Icon, href, label }) => (
             <a
               key={label}
@@ -189,11 +196,16 @@ export default function SiteHeader() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="w-9 h-9 grid place-items-center rounded-full border border-[#e7dfda] text-[#847a75] hover:border-[#a96872] hover:text-[#a96872] hover:bg-[#fff0ee] transition-all duration-200"
+              className="w-12 h-12 grid place-items-center rounded-full bg-[#f8f4f2] text-[#847a75] border border-[#e7dfda] hover:border-[#a96872] hover:bg-[#fff0ee] hover:text-[#a96872] hover:shadow-[0_3px_12px_rgba(234,196,207,0.25)] transition-all duration-200"
             >
-              <Icon size={18} />
+              <Icon size={20} />
             </a>
           ))}
+        </div>
+
+        {/* Rodapé minimalista */}
+        <div className="px-6 pb-8 text-center text-[10px] text-[#847a75]/40 tracking-wider">
+          © {new Date().getFullYear()} Duds Beauty Spa
         </div>
       </div>
     </>

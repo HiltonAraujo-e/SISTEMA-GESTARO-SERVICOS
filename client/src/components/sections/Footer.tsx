@@ -1,7 +1,8 @@
 import { Link } from 'wouter';
 import { Instagram, MessageCircle, MapPin, Phone, Clock3, ArrowUpRight } from 'lucide-react';
 import { toast } from 'sonner';
-import { BrandMark } from '../BrandMark';
+import { BrandMark } from '../Brand';
+
 
 export const Footer = () => {
     const handleSubscribe = (e: React.FormEvent) => {
@@ -16,7 +17,21 @@ export const Footer = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.8fr_0.9fr_1.3fr_1.3fr] gap-10 pb-12 border-b border-line">
                     {/* Coluna 1: Marca */}
                     <div className="sm:col-span-2 lg:col-span-1">
-                        <BrandMark />
+
+                        <div className="flex items-center gap-2">
+                            <div className="w-10 h-10 grid place-items-center overflow-hidden relative">
+                                <BrandMark />
+                                <span className="absolute inset-0 rounded-full border border-current opacity-10 pointer-events-none" />
+                            </div>
+                            <div className="flex flex-col leading-tight">
+                                <strong className="font-serif text-lg font-semibold tracking-tight text-[#2d2524]">
+                                    Duds
+                                </strong>
+                                <small className="text-[5.5px] font-bold uppercase tracking-[0.18em] text-[#847a75]">
+                                    Beauty Spa
+                                </small>
+                            </div>
+                        </div>
                         <p className="text-ink/75 text-sm leading-relaxed mt-4 mb-5 max-w-xs">
                             Beleza, relaxamento e cuidado<br />com intenção.
                         </p>
