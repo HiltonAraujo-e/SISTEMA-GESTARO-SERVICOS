@@ -12,13 +12,13 @@ export const Contact = () => {
                     <div>
                         <Eyebrow>Visite-nos</Eyebrow>
                         <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-[-0.04em] mt-2">
-                            Reserve um <br className="hidden sm:inline" />
+                            Reserve um <span></span>
                             <span className="italic font-light text-rosewood">momento para si.</span>
                         </h2>
                     </div>
-                    <p className="max-w-[450px] text-muted text-sm leading-relaxed mx-auto lg:mx-0">
+                    {/* <p className="max-w-[450px] text-muted text-sm leading-relaxed mx-auto lg:mx-0">
                         Escolha o seu serviço, encontre o melhor horário e deixe o resto connosco.
-                    </p>
+                    </p> */}
                 </div>
 
                 {/* Card do contacto – mapa + info */}
