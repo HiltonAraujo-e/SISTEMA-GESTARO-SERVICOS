@@ -1,4 +1,3 @@
-// Quiet Luxury Ritual reminder: the admin experience treats business data as a calm daily ritual—clear hierarchy, soft surfaces, decisive actions.
 import { useMemo } from "react";
 import { ArrowDownRight, ArrowUpRight, CalendarDays, Check, ChevronDown, Clock3, Euro, MoreHorizontal, Search, TrendingUp, UsersRound, X } from "lucide-react";
 import { Link, useLocation } from "wouter";
