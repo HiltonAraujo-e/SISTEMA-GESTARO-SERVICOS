@@ -17,8 +17,8 @@ export const Ritual = () => {
                 <div>
                     <Eyebrow light>Como funciona</Eyebrow>
                     <h2 className="font-serif text-4xl md:text-5xl lg:text-[54px] font-medium leading-[1.1] tracking-[-0.04em] mt-2">
-                        Escolha o ritual.<br />
-                        <span className="italic font-light text-blush">Nós cuidamos do resto.</span>
+                        Escolha o ritual e<br />
+                        <span className="italic font-light text-blush">nós cuidamos do resto</span>
                     </h2>
                     <p className="max-w-xs md:max-w-sm mt-6 text-white/70 text-base leading-relaxed">
                         O seu tempo é precioso. Por isso, tornámos o agendamento simples, transparente e sem pressa.

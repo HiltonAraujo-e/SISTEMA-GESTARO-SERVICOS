@@ -14,6 +14,7 @@ import {
 import { Link } from "wouter";
 import { useApp } from "@/contexts/AppContext";
 import { Eyebrow } from "@/components/Eyebrow";
+import { BrandMark } from "@/components/Brand";
 
 function PageHeader() {
   return (
@@ -22,14 +23,14 @@ function PageHeader() {
         <button
           onClick={() => window.history.back()}
           aria-label="Voltar à página anterior"
-          className="group inline-flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full border border-blush/30 text-blush hover:bg-blush hover:text-[#6b5450] hover:border-blush transition-all flex-none"
+          className="group inline-flex items-center justify-center text-blush hover:bg-blush hover:text-[#6b5450] hover:border-blush transition-all flex-none"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-0.5 transition-transform" />
         </button>
 
         <div className="flex-1 flex items-center gap-3 min-w-0">
           <span className="hidden sm:flex w-9 h-9 rounded-full bg-white/10 items-center justify-center flex-none">
-            <Sparkles size={15} className="text-blush" />
+            <BrandMark />
           </span>
           <div className="min-w-0">
             <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-blush">
@@ -331,10 +332,6 @@ export default function Book() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 mt-4 p-4 bg-blush-soft rounded-xl text-ink/70 text-xs">
-                <Info size={16} className="text-rosewood flex-none mt-0.5" />
-                <p>Os dados e pagamentos nesta página são simulados para demonstração.</p>
-              </div>
             </aside>
 
             {/* Painel principal */}
@@ -344,7 +341,7 @@ export default function Book() {
                   <div className="border-b border-line pb-6">
                     <Eyebrow>Passo 01 de 02</Eyebrow>
                     <h2 className="font-serif text-3xl md:text-4xl font-medium leading-[1.1] mt-1">
-                      O que gostaria <span className="italic font-light text-rosewood">de oferecer a si?</span>
+                      Que serviço gostaria <span className="italic font-light text-rosewood">de agendar?</span>
                     </h2>
                   </div>
 

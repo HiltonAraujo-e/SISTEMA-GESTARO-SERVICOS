@@ -3,6 +3,7 @@ import { Plus, ArrowUpRight, MessageCircle } from 'lucide-react';
 import { faqs } from '@/services/mockData';
 import { Eyebrow } from '../Eyebrow';
 
+
 export const Faq = () => {
     const [open, setOpen] = useState<number | null>(0);
 
@@ -19,19 +20,20 @@ export const Faq = () => {
                         <Eyebrow light>Perguntas frequentes</Eyebrow>
                         <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-[-0.04em] mt-2 text-white">
                             Tudo o que precisa<br />
-                            <span className="italic font-light text-blush">de saber.</span>
+                            <span className="italic font-light text-blush">saber</span>
                         </h2>
                         <p className="max-w-[270px] mt-6 text-white/60 leading-relaxed">
                             Se ainda ficou alguma dúvida, estamos sempre disponíveis para ajudar.
                         </p>
                         <a
-                            href="mailto:ola@dudsbeautyspa.pt"
-                            className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-blush hover:text-blush/80 hover:gap-3 transition-all duration-200 group"
+                            href="mailto:silhuetajovial@gmail.com"
+                            className="inline-flex items-center gap-2 mt-8 min-h-[44px] px-6 rounded-full text-sm font-semibold bg-blush text-ink shadow-[0_4px_14px_rgba(234,196,207,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_22px_rgba(234,196,207,0.4)] transition-all duration-200"
                         >
                             <MessageCircle size={18} className="group-hover:scale-110 transition-transform" />
                             Fale connosco
                             <ArrowUpRight size={15} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                         </a>
+
                     </div>
 
                     {/* Coluna direita – accordion FAQ */}

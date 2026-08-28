@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { ArrowUpRight, Menu, X, Instagram, Facebook, MessageCircle } from "lucide-react";
 import { BrandMark } from "@/components/Brand";
@@ -12,29 +12,41 @@ const links = [
 ];
 
 const socials = [
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  { icon: Instagram, href: "https://www.instagram.com/dudsbeautyspa", label: "Instagram" },
   { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-  { icon: MessageCircle, href: "https://wa.me/351912345678", label: "WhatsApp" },
+  { icon: MessageCircle, href: "https://wa.me/351927979040", label: "WhatsApp" },
 ];
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
   const isHome = location === "/";
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
-      <header className="fixed top-0 z-30 w-full bg-[#fffdfb] border-b border-[#e7dfda] shadow-sm">
+      <header
+        className={`fixed top-0 z-30 w-full transition-all duration-300 ${scrolled
+          ? "bg-[#fffdfb]/90 backdrop-blur-md shadow-[0_8px_30px_rgba(61,48,47,0.08)] border-b border-[#eac4cf]/50"
+          : "bg-[#fffdfb] border-b border-[#e7dfda]"
+          }`}
+      >
         <div className="w-full max-w-[1280px] mx-auto min-h-[64px] flex items-center justify-between gap-3 px-4 md:px-8">
           {/* Logo */}
-          <div className="flex items-center flex-none">
-            <div className="flex items-center gap-1.5">
-              <div className="w-10 h-10 grid place-items-center overflow-hidden relative">
+          <Link href="/" className="flex items-center flex-none group">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 grid place-items-center overflow-hidden relative rounded-full ring-1 ring-[#eac4cf] transition-transform duration-300 group-hover:scale-105">
                 <BrandMark />
-                <span className="absolute inset-0 rounded-full border border-current opacity-10 pointer-events-none" />
               </div>
               <div className="flex flex-col leading-tight">
-                <strong className="font-serif text-xl font-semibold tracking-tight text-[#2d2524]">
+                <strong className="font-serif text-xl font-semibold tracking-tight text-[#3d302f]">
                   Duds
                 </strong>
                 <small className="text-[6px] font-bold uppercase tracking-[0.18em] text-[#847a75]">
@@ -42,7 +54,7 @@ export default function SiteHeader() {
                 </small>
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* Navegação desktop */}
           <nav className="hidden md:flex items-center justify-center flex-1 gap-6">
@@ -51,7 +63,7 @@ export default function SiteHeader() {
                 key={href}
                 href={isHome ? href : `/${href}`}
                 onClick={() => setOpen(false)}
-                className="text-sm font-medium tracking-wide text-[#2d2524] opacity-70 hover:opacity-100 hover:text-[#a96872] transition-all duration-200 relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[1.5px] after:bg-[#eac4cf] after:transition-all after:duration-200 hover:after:w-full"
+                className="text-sm font-medium tracking-wide text-[#3d302f] opacity-70 hover:opacity-100 hover:text-[#a96872] transition-all duration-200 relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[1.5px] after:bg-[#eac4cf] after:transition-all after:duration-200 hover:after:w-full"
               >
                 {label}
               </a>
@@ -68,7 +80,7 @@ export default function SiteHeader() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-7 h-7 grid place-items-center rounded-full text-[#847a75] hover:bg-[#fff0ee] hover:text-[#a96872] hover:scale-105 transition-all duration-200"
+                  className="w-7 h-7 grid place-items-center rounded-full text-[#847a75] hover:bg-[#eac4cf] hover:text-[#3d302f] hover:scale-105 transition-all duration-200"
                 >
                   <Icon size={14} />
                 </a>
@@ -78,9 +90,9 @@ export default function SiteHeader() {
             <span className="hidden sm:inline-block w-px h-5 bg-[#e7dfda]" />
 
             <div className="flex items-center gap-1 text-[10px] font-semibold tracking-wide">
-              <button className="text-[#2d2524] hover:text-[#2d2524] transition-colors">PT</button>
+              <button className="text-[#3d302f] hover:text-[#3d302f] transition-colors">PT</button>
               <span className="text-[#e7dfda]">|</span>
-              <button className="text-[#847a75] hover:text-[#2d2524] transition-colors">EN</button>
+              <button className="text-[#847a75] hover:text-[#3d302f] transition-colors">EN</button>
             </div>
 
             <span className="hidden md:inline-block w-px h-5 bg-[#e7dfda]" />
@@ -94,13 +106,13 @@ export default function SiteHeader() {
 
             <Link
               href="/book"
-              className="hidden sm:inline-flex items-center gap-1.5 min-h-[34px] px-3.5 py-1 rounded-full text-xs font-semibold bg-[#eac4cf] text-[#2d2524] shadow-[0_2px_10px_rgba(234,196,207,0.25)] hover:-translate-y-0.5 hover:shadow-[0_4px_14px_rgba(234,196,207,0.35)] transition-all duration-200"
+              className="hidden sm:inline-flex items-center gap-1.5 min-h-[34px] px-3.5 py-1 rounded-full text-xs font-semibold bg-[#eac4cf] text-[#3d302f] shadow-[0_2px_10px_rgba(234,196,207,0.35)] hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(234,196,207,0.5)] transition-all duration-200"
             >
               Agendar <ArrowUpRight size={12} />
             </Link>
 
             <button
-              className="md:hidden w-8 h-8 grid place-items-center text-[#2d2524]"
+              className="md:hidden w-9 h-9 grid place-items-center rounded-full text-[#3d302f] hover:bg-[#fff0ee] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#eac4cf]"
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Fechar menu" : "Abrir menu"}
               aria-expanded={open}
@@ -113,7 +125,7 @@ export default function SiteHeader() {
 
       {/* Overlay escuro (backdrop) */}
       <div
-        className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 bg-[#3d302f]/25 backdrop-blur-sm z-40 transition-opacity duration-300 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
         onClick={() => setOpen(false)}
       />
@@ -123,15 +135,20 @@ export default function SiteHeader() {
         className={`fixed top-0 right-0 bottom-0 w-full max-w-[340px] bg-[#fffdfb] shadow-2xl z-50 overflow-y-auto transform transition-transform duration-300 ease-out ${open ? "translate-x-0" : "translate-x-full"
           }`}
       >
+        {/* Brilho decorativo no topo da gaveta */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#eac4cf] opacity-30 blur-3xl"
+        />
+
         {/* Cabeçalho do menu com logo e botão X */}
-        <div className="flex items-center justify-between px-6 pt-8 pb-4 border-b border-[#e7dfda]">
+        <div className="relative flex items-center justify-between px-6 pt-8 pb-4 border-b border-[#e7dfda]">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 grid place-items-center overflow-hidden relative">
+            <div className="w-10 h-10 grid place-items-center overflow-hidden relative rounded-full ring-1 ring-[#eac4cf]">
               <BrandMark />
-              <span className="absolute inset-0 rounded-full border border-current opacity-10 pointer-events-none" />
             </div>
             <div className="flex flex-col leading-tight">
-              <strong className="font-serif text-lg font-semibold tracking-tight text-[#2d2524]">
+              <strong className="font-serif text-lg font-semibold tracking-tight text-[#3d302f]">
                 Duds
               </strong>
               <small className="text-[5.5px] font-bold uppercase tracking-[0.18em] text-[#847a75]">
@@ -149,16 +166,19 @@ export default function SiteHeader() {
         </div>
 
         {/* Links de navegação — agora com mais requinte */}
-        <nav className="flex flex-col px-6 py-6 gap-0.5">
+        <nav className="relative flex flex-col px-6 py-6 gap-0.5">
           {links.map(([label, href]) => (
             <a
               key={href}
               href={isHome ? href : `/${href}`}
               onClick={() => setOpen(false)}
-              className="group flex items-center justify-between py-4 border-b border-[#e7dfda]/60 text-xl font-serif font-medium text-[#2d2524] hover:text-[#a96872] transition-colors duration-200"
+              className="group flex items-center justify-between py-4 border-b border-[#e7dfda]/60 text-xl font-serif font-medium text-[#3d302f] hover:text-[#a96872] transition-colors duration-200"
             >
               {label}
-              <ArrowUpRight size={16} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-[#a96872]" />
+              <ArrowUpRight
+                size={16}
+                className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-[#a96872]"
+              />
             </a>
           ))}
         </nav>
@@ -171,14 +191,14 @@ export default function SiteHeader() {
           <Link
             href="/login"
             onClick={() => setOpen(false)}
-            className="flex items-center justify-center w-full h-11 rounded-full border border-[#e7dfda] text-sm font-medium text-[#847a75] hover:border-[#a96872] hover:bg-[#fff0ee] hover:text-[#a96872] transition-all duration-200"
+            className="flex items-center justify-center w-full h-12 rounded-full border border-[#e7dfda] text-sm font-medium text-[#847a75] hover:border-[#a96872] hover:bg-[#fff0ee] hover:text-[#a96872] transition-all duration-200"
           >
             Login
           </Link>
           <Link
             href="/book"
             onClick={() => setOpen(false)}
-            className="flex items-center justify-center gap-2 w-full h-11 rounded-full text-sm font-semibold bg-[#eac4cf] text-[#2d2524] shadow-[0_3px_12px_rgba(234,196,207,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(234,196,207,0.4)] transition-all duration-200"
+            className="flex items-center justify-center gap-2 w-full h-12 rounded-full text-sm font-semibold bg-[#eac4cf] text-[#3d302f] shadow-[0_3px_12px_rgba(234,196,207,0.35)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(234,196,207,0.5)] transition-all duration-200"
           >
             Agendar <ArrowUpRight size={16} />
           </Link>
@@ -196,7 +216,7 @@ export default function SiteHeader() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="w-12 h-12 grid place-items-center rounded-full bg-[#f8f4f2] text-[#847a75] border border-[#e7dfda] hover:border-[#a96872] hover:bg-[#fff0ee] hover:text-[#a96872] hover:shadow-[0_3px_12px_rgba(234,196,207,0.25)] transition-all duration-200"
+              className="w-12 h-12 grid place-items-center rounded-full bg-[#f8f4f2] text-[#847a75] border border-[#e7dfda] hover:border-[#a96872] hover:bg-[#eac4cf] hover:text-[#3d302f] hover:shadow-[0_3px_12px_rgba(234,196,207,0.4)] transition-all duration-200"
             >
               <Icon size={20} />
             </a>
@@ -204,7 +224,7 @@ export default function SiteHeader() {
         </div>
 
         {/* Rodapé minimalista */}
-        <div className="px-6 pb-8 text-center text-[10px] text-[#847a75]/40 tracking-wider">
+        <div className="relative px-6 pb-8 text-center text-[10px] text-[#847a75]/40 tracking-wider">
           © {new Date().getFullYear()} Duds Beauty Spa
         </div>
       </div>
