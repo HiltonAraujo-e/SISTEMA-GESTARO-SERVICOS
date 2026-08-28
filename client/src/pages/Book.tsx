@@ -15,7 +15,6 @@ import { Link } from "wouter";
 import { useApp } from "@/contexts/AppContext";
 import { Eyebrow } from "@/components/Eyebrow";
 
-
 function PageHeader() {
   return (
     <header className="sticky top-0 z-40 bg-[#6b5450] border-b border-blush/20">
@@ -48,9 +47,6 @@ function PageHeader() {
   );
 }
 
-/* ---------------------------------------------------------
-   Footer — mesmo castanho, links blush
---------------------------------------------------------- */
 function PageFooter() {
   return (
     <footer className="bg-[#6b5450]">
@@ -86,6 +82,11 @@ export default function Book() {
 
   const [step, setStep] = useState(1);
 
+  // Dados do utilizador – preenchidos com os valores do contexto (se existirem)
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+
   const [selectedServiceIds, setSelectedServiceIds] = useState<string[]>(
     queryService && services.some((s) => s.id === queryService) ? [queryService] : []
   );
@@ -118,7 +119,12 @@ export default function Book() {
   const next = () => setStep((s) => Math.min(s + 1, 3));
 
   const canContinueStep1 = selectedServiceIds.length > 0 && !!date && !!time;
-  const canSubmitStep2 = !!professional && !!depositPercent;
+  const canSubmitStep2 =
+    !!professional &&
+    !!depositPercent &&
+    userName.trim().length > 0 &&
+    userEmail.trim().length > 0 &&
+    userPhone.trim().length > 0;
 
   const createBooking = () => {
     if (!depositPercent) return;
@@ -126,7 +132,9 @@ export default function Book() {
     addAppointment({
       id: `apt-${Date.now()}`,
       clientId: client.id,
-      clientName: client.name,
+      clientName: userName,
+      clientEmail: userEmail,
+      clientPhone: userPhone,
       serviceId: selectedServices.map((s) => s.id).join(","),
       serviceName: selectedServices.map((s) => s.name).join(" + "),
       date,
@@ -164,10 +172,11 @@ export default function Book() {
               </h1>
             </div>
 
-            <div className="p-8 md:p-12 text-center">
+            {/* Fundo branco para a mensagem de confirmação */}
+            <div className="p-8 md:p-12 text-center bg-white">
               <p className="text-muted text-sm leading-relaxed max-w-md mx-auto">
                 Recebemos o pagamento de entrada. A nossa equipa irá analisar o pedido e enviar a
-                confirmação para <strong className="text-ink">{client.email}</strong>.
+                confirmação para <strong className="text-ink">{userEmail}</strong>.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 p-6 bg-ivory rounded-xl text-left">
@@ -342,7 +351,7 @@ export default function Book() {
                   <div className="space-y-6 mt-6">
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <label className="block text-muted text-xs font-semibold uppercase tracking-wider">
+                        <label className="block text-ink/70 text-xs font-semibold uppercase tracking-wider">
                           Escolha um ou mais serviços
                         </label>
                         {selectedServiceIds.length > 0 && (
@@ -386,7 +395,7 @@ export default function Book() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-muted text-xs font-semibold uppercase tracking-wider mb-2">
+                        <label className="block text-ink/70 text-xs font-semibold uppercase tracking-wider mb-2">
                           Data
                         </label>
                         <input
@@ -401,7 +410,7 @@ export default function Book() {
                         />
                       </div>
                       <div>
-                        <label className="flex items-center gap-1.5 text-muted text-xs font-semibold uppercase tracking-wider mb-2">
+                        <label className="flex items-center gap-1.5 text-ink/70 text-xs font-semibold uppercase tracking-wider mb-2">
                           <User size={13} /> Profissional
                         </label>
                         <select
@@ -418,7 +427,7 @@ export default function Book() {
                     </div>
 
                     <div>
-                      <span className="block text-muted text-xs font-semibold uppercase tracking-wider mb-3">
+                      <span className="block text-ink/70 text-xs font-semibold uppercase tracking-wider mb-3">
                         Horário disponível
                       </span>
                       {!date || selectedServiceIds.length === 0 ? (
@@ -480,7 +489,7 @@ export default function Book() {
 
                   <div className="space-y-6 mt-6">
                     <div className="p-4 bg-ivory rounded-xl space-y-3">
-                      <span className="text-muted text-[10px] uppercase tracking-wider">
+                      <span className="text-ink/70 text-[10px] uppercase tracking-wider">
                         {selectedServices.length > 1 ? "Serviços escolhidos" : "Serviço escolhido"}
                       </span>
                       {selectedServices.map((s) => (
@@ -501,7 +510,7 @@ export default function Book() {
                       <div className="flex items-start gap-3 p-4 bg-ivory rounded-xl">
                         <CalendarDays size={18} className="text-rosewood flex-none mt-1" />
                         <div>
-                          <span className="text-muted text-[10px] uppercase tracking-wider">Data e hora</span>
+                          <span className="text-ink/70 text-[10px] uppercase tracking-wider">Data e hora</span>
                           <strong className="block font-serif text-lg font-semibold">
                             {new Date(`${date}T12:00:00`).toLocaleDateString("pt-PT", {
                               weekday: "long",
@@ -514,7 +523,7 @@ export default function Book() {
                         </div>
                       </div>
                       <div className="p-4 bg-ivory rounded-xl">
-                        <label className="flex items-center gap-1.5 text-muted text-[10px] uppercase tracking-wider mb-2">
+                        <label className="flex items-center gap-1.5 text-ink/70 text-[10px] uppercase tracking-wider mb-2">
                           <User size={13} className="text-rosewood" /> Profissional
                         </label>
                         <select
@@ -526,6 +535,46 @@ export default function Book() {
                           <option>Inês Martins</option>
                           <option>Sofia Costa</option>
                         </select>
+                      </div>
+                    </div>
+
+                    {/* NOVOS CAMPOS: Nome, Email e Contacto — com labels mais escuras */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-ivory rounded-xl">
+                      <div>
+                        <label className="block text-ink/70 text-[10px] uppercase tracking-wider mb-1">
+                          Nome completo
+                        </label>
+                        <input
+                          type="text"
+                          value={userName}
+                          onChange={(e) => setUserName(e.target.value)}
+                          placeholder="Seu nome"
+                          className="w-full h-11 px-3 rounded-lg border border-line bg-paper text-sm focus:border-rosewood focus:ring-2 focus:ring-rosewood/15 outline-none transition"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-ink/70 text-[10px] uppercase tracking-wider mb-1">
+                          E-mail
+                        </label>
+                        <input
+                          type="email"
+                          value={userEmail}
+                          onChange={(e) => setUserEmail(e.target.value)}
+                          placeholder="seu@email.com"
+                          className="w-full h-11 px-3 rounded-lg border border-line bg-paper text-sm focus:border-rosewood focus:ring-2 focus:ring-rosewood/15 outline-none transition"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-ink/70 text-[10px] uppercase tracking-wider mb-1">
+                          Contacto
+                        </label>
+                        <input
+                          type="tel"
+                          value={userPhone}
+                          onChange={(e) => setUserPhone(e.target.value)}
+                          placeholder="912 345 678"
+                          className="w-full h-11 px-3 rounded-lg border border-line bg-paper text-sm focus:border-rosewood focus:ring-2 focus:ring-rosewood/15 outline-none transition"
+                        />
                       </div>
                     </div>
 

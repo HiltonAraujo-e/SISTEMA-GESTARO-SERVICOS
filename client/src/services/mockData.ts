@@ -41,6 +41,8 @@ export type Appointment = {
   paymentStatus: "Pago" | "Pendente";
   status: AppointmentStatus;
   createdAt: string;
+  clientEmail?: string;
+  clientPhone?: string;
 };
 
 export const spaServices: SpaService[] = [

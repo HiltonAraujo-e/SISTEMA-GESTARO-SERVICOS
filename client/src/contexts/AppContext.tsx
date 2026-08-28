@@ -11,7 +11,7 @@ import {
   type UserRole,
 } from "@/services/mockData";
 
-const defaultClient = { id: "client-1", name: "Marta Silva", email: "marta@email.pt" };
+const defaultClient = { id: "client-1", name: "Marta Silva", email: "marta@email.pt", phone: "123456789", clientEmail: "marta@email.pt", clientPhone: "123456789" };
 
 type AppContextValue = {
   role: UserRole;

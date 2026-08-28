@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation, Link } from "wouter";
-import { Eye, EyeOff, Loader2, ArrowRight, Mail, Lock, Sparkles, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff, Loader2, ArrowRight, Mail, Lock, Sparkles, ShieldCheck, ArrowUpRight, ArrowLeft } from "lucide-react";
+import { Arrow } from "@radix-ui/react-tooltip";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -231,6 +232,10 @@ export default function LoginPage() {
                 Criar conta
                 <ArrowRight size={14} className="text-muted transition-transform group-hover:translate-x-0.5" />
               </Link>
+
+              <p className="text-center text-muted/50 text-[10px] font-medium tracking-wider mt-6 flex items-center justify-center gap-1">
+                <ArrowLeft size={14} /><Link href="/">Voltar ao início</Link>
+              </p>
             </div>
           </div>
 
@@ -242,3 +247,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+
